@@ -40,7 +40,6 @@ int PASCAL wWinMain(HINSTANCE instance, HINSTANCE prev_instance,
     printf("Error: %i is not a valid port.\n", FLAG_port);
     return -1;
   }
-
   MainWnd wnd(FLAG_server, FLAG_port, FLAG_autoconnect, FLAG_autocall);
   if (!wnd.Create()) {
     RTC_NOTREACHED();

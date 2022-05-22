@@ -15,7 +15,7 @@
 #include <stdint.h>
 
 #include <string>
-
+#include <vector>
 
 //hujianhua
 #define JANUS_FLAG                         1
@@ -25,10 +25,24 @@ extern const char kVideoLabel[];
 extern const char kStreamLabel[];
 extern const uint16_t kDefaultServerPort;
 
+//保存一个网络连接信息
+struct NetWorkConection
+{
+	int index{};			//该连接在MIB_IFTABLE中的索引
+	std::string description;		//网络描述（获取自GetAdapterInfo）
+	std::string description_2;	//网络描述（获取自GetIfTable）
+	unsigned int in_bytes;	//初始时已接收字节数
+	unsigned int out_bytes;	//初始时已发送字节数
+	std::string ip_address;	//IP地址
+	std::string subnet_mask;	//子网掩码
+	std::string default_gateway;	//默认网关
+};
+
 std::string GetEnvVarOrDefault(const char* env_var_name,
                                const char* default_value);
 std::string GetPeerConnectionString();
 std::string GetDefaultServerName();
 std::string GetPeerName();
 
+void GetLocalHostIp(std::vector<NetWorkConection>& netConnections);
 #endif  // WEBRTC_EXAMPLES_PEERCONNECTION_CLIENT_DEFAULTS_H_
